@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.0.0-rc.4 - 2014-04-02
+ * @version v2.0.0-rc.4 - 2014-04-03
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes (olivier@mg-crea.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -2957,6 +2957,7 @@
             // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
             if (controller.$dirty) {
               element.val(isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.timeFormat));
+              controller.$setViewValue(element.val());
             } else if (controller.$modelValue === null || controller.$modelValue === undefined) {
               controller.$setValidity('required', false);
             }

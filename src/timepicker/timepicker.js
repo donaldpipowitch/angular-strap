@@ -366,6 +366,7 @@ angular.module('mgcrea.ngStrap.timepicker', ['mgcrea.ngStrap.helpers.dateParser'
           // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
           if(controller.$dirty) {
             element.val(isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.timeFormat));
+            controller.$setViewValue(element.val());
           } else if(controller.$modelValue === null || controller.$modelValue === undefined) {
             controller.$setValidity('required', false);
           }
