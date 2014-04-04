@@ -369,6 +369,10 @@ angular.module('mgcrea.ngStrap.timepicker', ['mgcrea.ngStrap.helpers.dateParser'
             controller.$setViewValue(element.val());
           } else if(controller.$modelValue === null || controller.$modelValue === undefined) {
             controller.$setValidity('required', false);
+          } else if(typeof controller.$modelValue === 'string') {
+            // normalize initial value
+            controller.$dateValue = new Date(parseInt(controller.$modelValue));
+            element.val(isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.timeFormat));
           }
         };
 

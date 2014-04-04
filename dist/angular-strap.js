@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.0.0-rc.4 - 2014-04-03
+ * @version v2.0.0-rc.4 - 2014-04-04
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes (olivier@mg-crea.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -2960,6 +2960,10 @@
               controller.$setViewValue(element.val());
             } else if (controller.$modelValue === null || controller.$modelValue === undefined) {
               controller.$setValidity('required', false);
+            } else if (typeof controller.$modelValue === 'string') {
+              // normalize initial value
+              controller.$dateValue = new Date(parseInt(controller.$modelValue));
+              element.val(isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.timeFormat));
             }
           };
           // Garbage collection
